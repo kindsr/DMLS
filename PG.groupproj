@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{EDAE27DD-9813-462C-8F35-EEA70EFC9DF8}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="DMLS.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\Annotations\Annotations.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\Thumbnails2\Thumbs.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="DMLS">
+        <MSBuild Projects="DMLS.dproj"/>
+    </Target>
+    <Target Name="DMLS:Clean">
+        <MSBuild Projects="DMLS.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DMLS:Make">
+        <MSBuild Projects="DMLS.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Annotations">
+        <MSBuild Projects="..\Annotations\Annotations.dproj"/>
+    </Target>
+    <Target Name="Annotations:Clean">
+        <MSBuild Projects="..\Annotations\Annotations.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Annotations:Make">
+        <MSBuild Projects="..\Annotations\Annotations.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Thumbs">
+        <MSBuild Projects="..\Thumbnails2\Thumbs.dproj"/>
+    </Target>
+    <Target Name="Thumbs:Clean">
+        <MSBuild Projects="..\Thumbnails2\Thumbs.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Thumbs:Make">
+        <MSBuild Projects="..\Thumbnails2\Thumbs.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="DMLS;Annotations;Thumbs"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="DMLS:Clean;Annotations:Clean;Thumbs:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="DMLS:Make;Annotations:Make;Thumbs:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
